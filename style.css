@@ -1,0 +1,200 @@
+/* =====================
+   Grunddesign & Background
+===================== */
+body {
+  margin: 0;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(-45deg, #ffe6f0, #fff0f5, #ffd9e8, #ffe6f0);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  overflow: hidden;
+}
+
+/* =====================
+   Container
+===================== */
+.container {
+  text-align: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: containerFade 1.2s ease forwards;
+  opacity: 0;
+}
+
+@keyframes containerFade {
+  to { opacity: 1; }
+}
+
+/* =====================
+   Pfeil oben rechts
+===================== */
+.arrow {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  width: 65px;
+  border-radius: 15px;
+  animation: bounce 1.5s infinite, glow 2s infinite alternate, arrowFade 1.5s ease forwards;
+  opacity: 0;
+}
+
+@keyframes arrowFade { to { opacity: 1; } }
+
+.arrow:hover {
+  transform: rotate(-15deg) scale(1.1);
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+
+@keyframes glow {
+  0% { filter: drop-shadow(0 0 0px #ff69b4); }
+  100% { filter: drop-shadow(0 0 15px #ff69b4); }
+}
+
+/* =====================
+   Profilbild
+===================== */
+.profile-pic {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 25px;
+  border: 4px solid #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transform: translateY(-50px);
+  opacity: 0;
+  animation: picFade 1s forwards 0.5s;
+}
+
+@keyframes picFade {
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.profile-pic:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(255,105,180,0.4);
+}
+
+/* =====================
+   Textbox
+===================== */
+.text-box {
+  background: linear-gradient(135deg, #fff0f5, #ffe6f0);
+  border-radius: 30px;
+  padding: 30px 40px;
+  max-width: 320px;
+  box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+  position: relative;
+  overflow: hidden;
+  transform: translateY(50px);
+  opacity: 0;
+  animation: boxFade 1s forwards 1s;
+}
+
+/* Shine Effekt */
+.text-box::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: rgba(255,255,255,0.2);
+  transform: rotate(45deg) translateX(-100%);
+  animation: shine 2s infinite;
+}
+
+@keyframes boxFade {
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes shine {
+  0% { transform: rotate(45deg) translateX(-100%); }
+  100% { transform: rotate(45deg) translateX(100%); }
+}
+
+/* =====================
+   Text Styling
+===================== */
+.text-box h1 {
+  font-size: 22px;
+  margin-bottom: 12px;
+  color: #333;
+  font-weight: 700;
+}
+
+/* Erste Frage hervorheben */
+.text-box p:first-of-type {
+  color: #ff99cc; /* helles Pink passend zum Hintergrund */
+  font-weight: 600;
+  font-size: 17px;
+}
+
+.text-box p {
+  font-size: 16px;
+  color: #555;
+  margin: 6px 0;
+}
+
+/* Hinweistext pulsierend */
+.text-box .text {
+  color: #e6007e;
+  font-weight: bold;
+  animation: pulse 1.5s infinite, glowText 2s infinite alternate;
+  margin-top: 10px;
+}
+
+/* Punkt 2 – Open in browser in einer Zeile */
+.text-box .point2 {
+  white-space: nowrap;  /* verhindert Zeilenumbruch */
+  color: #ff66bb;        /* kräftigeres Pink */
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+/* Open in browser extra auffällig */
+.text-box .open-browser {
+  display: inline-block;
+  font-size: 17px;
+  font-weight: 700;
+  color: #ff3399;
+  text-shadow: 0 0 5px #ff66bb, 0 0 10px #ff66bb;
+  animation: pulseBrowser 1.2s infinite alternate;
+}
+
+/* =====================
+   Animations
+===================== */
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+@keyframes glowText {
+  0% { text-shadow: 0 0 3px #ff66bb, 0 0 7px #ff66bb; }
+  50% { text-shadow: 0 0 5px #ff99cc, 0 0 10px #ff99cc; }
+  100% { text-shadow: 0 0 3px #ff66bb, 0 0 7px #ff66bb; }
+}
+
+@keyframes pulseBrowser {
+  0% { color: #ff3399; text-shadow: 0 0 5px #ff66bb, 0 0 10px #ff66bb; }
+  50% { color: #ff66bb; text-shadow: 0 0 10px #ff99cc, 0 0 15px #ff99cc; }
+  100% { color: #ff3399; text-shadow: 0 0 5px #ff66bb, 0 0 10px #ff66bb; }
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
