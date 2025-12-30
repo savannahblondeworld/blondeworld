@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Savannah</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Pfeil oben rechts -->
+    <img src="arrow.png" alt="Arrow" class="arrow">
+
+    <!-- Profilbild -->
+    <img src="profile.png" alt="Savannah" class="profile-pic">
+
+    <!-- Textbox -->
+    <div class="text-box">
+      <h1>Have you heard of Savannah's BlondeWorld?🥰💖</h1>
+      <p>If not, follow these steps:</p>
+      <p class="text">1️⃣ Tap the three dots ⋯ in the top right corner</p>
+      <p class="text point2">2️⃣  Click "Open in Browser" 🚀</p>
+      <p class="text">3️⃣ Dive into my world 🌸💫</p>
+    </div>
+
+  </div>
+
+  <!-- 🔥 SMART REDIRECT LOGIC -->
+  <script>
+    function isInAppBrowser() {
+      const ua = navigator.userAgent || navigator.vendor || window.opera;
+      return (
+        ua.includes("TikTok") ||
+        ua.includes("Instagram") ||
+        ua.includes("FBAN") ||
+        ua.includes("FBAV") ||
+        ua.includes("WebView") ||
+        ua.includes("wv")
+      );
+    }
+
+    // Only real browser → redirect
+    if (!isInAppBrowser() && !sessionStorage.getItem("reloaded")) {
+      sessionStorage.setItem("reloaded", "true");
+      window.location.reload();
+    } 
+
+    if (!isInAppBrowser()) {
+      window.location.href = "";
+    }
+  </script>
+
+</body>
+</html>
